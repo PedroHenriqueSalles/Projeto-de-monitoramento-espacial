@@ -1,0 +1,140 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 257.54,
+      "left": 90.1,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "board-bmp180",
+      "id": "bmp1",
+      "top": 193.16,
+      "left": 532.26,
+      "rotate": 90,
+      "attrs": { "pressure": "95000", "temperature": "24.8" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": 131.3,
+      "left": 1.9,
+      "rotate": 270,
+      "attrs": { "distance": "2" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic2",
+      "top": 131.3,
+      "left": 136.3,
+      "rotate": 270,
+      "attrs": { "distance": "2" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic3",
+      "top": 131.3,
+      "left": 280.3,
+      "rotate": 270,
+      "attrs": { "distance": "2" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 143.7,
+      "left": 397.7,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 12,
+      "left": -55.8,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text1",
+      "top": 57.6,
+      "left": 57.6,
+      "attrs": { "text": "Água" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text3",
+      "top": 57.6,
+      "left": 163.2,
+      "attrs": { "text": "Combustível" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text5",
+      "top": 57.6,
+      "left": 460.8,
+      "attrs": { "text": "Bateria" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text7",
+      "top": 96,
+      "left": 566.4,
+      "attrs": { "text": "↓\n↓\n↓" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text8",
+      "top": 19.2,
+      "left": 537.6,
+      "attrs": { "text": "Pressão\n      &\nTemperatura" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text9",
+      "top": 67.2,
+      "left": 316.8,
+      "attrs": { "text": "Mantimentos" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ultrasonic1:VCC", "esp:5V", "red", [ "h9.6", "v76.8", "h-96" ] ],
+    [ "ultrasonic2:VCC", "esp:5V", "red", [ "h9.6", "v76.8", "h-230.4" ] ],
+    [ "ultrasonic3:VCC", "esp:5V", "red", [ "h9.6", "v76.8", "h-374.4" ] ],
+    [ "esp:GND.1", "ultrasonic1:GND", "black", [ "v-38.25", "h57.6", "v-116.4" ] ],
+    [ "ultrasonic2:GND", "esp:GND.1", "black", [ "h19.2", "v116.4", "h-192" ] ],
+    [ "ultrasonic3:GND", "esp:GND.1", "black", [ "h19.2", "v116.4", "h-336" ] ],
+    [ "ldr1:GND", "esp:GND.1", "black", [ "v19.2", "h-393.2" ] ],
+    [ "bmp1:GND", "esp:GND.1", "black", [ "v9.6", "h-0.19", "v19.2", "h-480" ] ],
+    [ "bmp1:VCC", "esp:5V", "red", [ "v19.2", "h-57.6", "h-480" ] ],
+    [ "ldr1:VCC", "esp:5V", "red", [ "v9.6", "h-451.2" ] ],
+    [ "bmp1:SDA", "esp:21", "cyan", [ "v182.4", "h-384.19" ] ],
+    [ "bmp1:SCL", "esp:22", "blue", [ "v172.8", "h-364.99" ] ],
+    [ "ldr1:AO", "esp:34", "gold", [ "v48", "h-287.3" ] ],
+    [ "ultrasonic1:TRIG", "esp:13", "gray", [ "h28.8", "v106", "h-76.8" ] ],
+    [ "ultrasonic1:ECHO", "esp:12", "white", [ "h28.8", "v116", "h-57.6" ] ],
+    [ "esp:14", "ultrasonic2:TRIG", "blue", [ "v-19.05", "h48", "v-9.6", "h134.4", "v-106" ] ],
+    [ "esp:27", "ultrasonic2:ECHO", "cyan", [ "v-19.05", "h38.4", "v-9.6", "h144", "v-116" ] ],
+    [
+      "esp:26",
+      "ultrasonic3:TRIG",
+      "purple",
+      [ "v-9.45", "h28.8", "v-9.6", "h278.4", "v-115.6" ]
+    ],
+    [
+      "ultrasonic3:ECHO",
+      "esp:25",
+      "magenta",
+      [ "h28.8", "v125.6", "h-278.4", "v9.6", "h-19.2" ]
+    ],
+    [ "bz1:1", "esp:GND.1", "black", [ "v28.8", "v153.6", "h124.8" ] ],
+    [ "esp:23", "bz1:2", "red", [ "v9.6", "h-57.6", "v9.6", "h-134.4", "v-163.2", "h-38" ] ]
+  ],
+  "dependencies": {}
+}
